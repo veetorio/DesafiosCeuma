@@ -6,9 +6,8 @@ import java.util.List;
 
 public class Garagem
 {
-
-    List<Carro> garagem = new ArrayList();
-
+//sistema de armazenagem e procura do carro
+    List<Carro> garagem = new ArrayList();//lista dos carros na garagem
     void adicionarCarro(Carro c){
 
         if(garagem.size() <= 20)
@@ -19,7 +18,8 @@ public class Garagem
         {
             System.out.println("Não há vagas");
         }
-    }//adiciona carro
+    }//este metodo adiciona carro na garagem
+
     void removeCarro(String model){
         int i = 0;
         for (Carro c : garagem)
@@ -29,10 +29,9 @@ public class Garagem
             }
         }
         i++;
-    }//remove carro
+    }//este metodo remove carro
 
-
-    void mostrarLista() {
+    void mostrarLista(){
         for (Carro c: garagem)
         {
             System.out.println(c.getNomeMotorista() +"=>"+ c.getModelo()+"\n");
@@ -50,5 +49,5 @@ public class Garagem
             }
         }
 
-    }//mostra
+    }//procura o carro atraves do modelo e nome
 }
