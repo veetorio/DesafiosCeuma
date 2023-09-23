@@ -5,22 +5,24 @@ public class Passageiro
 {
     private String nome;//nome
     private String lugar;// e destino
+    private Integer Assento;// assento
 
-    private int assento;
-
-    public Passageiro(String _nome,String _lugar)
+    public Passageiro(String _nome,String _lugar,Integer assento)
     {
         this.nome = _nome;
         this.lugar = _lugar;
-
+        this.Assento = assento;
     }
-    String getNome()
+    public String getNome()
     {
         return this.nome;
     }
-    String getLugar()
+    public String getLugar()
     {
         return this.lugar;
     }
 
+    public Integer getAssento(){
+        return this.Assento;
+    }
 }
