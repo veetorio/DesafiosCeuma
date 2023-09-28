@@ -5,6 +5,7 @@ import desefiosCeuma.SistemasdeVoo.ClasseMãe.SistemaLines.Passageiro;
 import desefiosCeuma.SistemasdeVoo.ClasseMãe.SistemaLines.Qatar;
 
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -51,6 +52,9 @@ public class Sistema_de_Requisição_e_Aquisição
                 String local = leia.nextLine();
                 System.out.println("Qual seu assento?:");
                 Integer assento = Integer.parseInt(leia.nextLine());
+                try{leia.nextInt();}catch(NumberFormatException pa){
+                    System.out.println("seu erro number");
+                }
                 a.reservar(new Passageiro(nome,local,assento));
             break;
             case "mostrar":a.mostrarElementosAzul();
@@ -67,6 +71,7 @@ public class Sistema_de_Requisição_e_Aquisição
                 String local = leia.nextLine();
                 System.out.println("Qual seu assento?:");
                 Integer assento = Integer.parseInt(leia.nextLine());
+                try{assento = leia.nextInt();}catch (Exception e){}
                 q.reservar(new Passageiro(nome,local,assento));
                 break;
             case "mostrar":
