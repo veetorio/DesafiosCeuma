@@ -1,13 +1,14 @@
 package desefiosCeuma.DesafioCarro;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import desefiosCeuma.SistemasdeVoo.ClasseMãe.SistemaLines.Passageiro;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Garagem {
     // sistema de armazenagem e procura do carro
-    Map<Integer, Carro> garagem = new HashMap();// lista dos carros na garagem
+    Map<Integer, Carro> garagem = new HashMap();
+    Carro c;// lista dos carros na garagem
 
     void adicionarCarro(Carro c) {
 
@@ -28,20 +29,21 @@ public class Garagem {
             }
     }// este metodo remove carro
 
-    void mostrarLista() {
-        garagem.values().forEach(p -> {
-            System.out.printf("Carro: %s -> Dono: %s -> Estacionado %s \n", p.getModelo(), p.getNomeMotorista(),
-                    p.getEstacionado());
-        });
+      String mostrarLista(){
+          for (Carro a :garagem.values()){
+              String lis = "Modelo -> "+a.getModelo() +" Dono -> "+a.getNomeMotorista()+" Vaga -> "+ a.getEstacionado();
+              return lis;}
+          return "";
+      }//mostra os carros
 
-        }//mostra os carros
-
-        void procurarCarro(String nome,String model){
-            garagem.values().forEach(g -> {
-                if(g.getModelo().equals(model) && g.getNomeMotorista().equals(nome)){
-                    System.out.println("Carro encontrado!, ele está na vaga " + g.getEstacionado());
-                }
-            });
+        String procurarCarro(String nome,String model){
+//                Boolean valida = garagem.values();
+//                if(valida){
+//                     return ("Carro encontrado!, ele está na vaga " + c.getEstacionado());
+//                }else{
+//                     return "não encontrado";
+//                }
+            return "";
         }
     }
 // procura o carro atraves do modelo e nome
