@@ -1,53 +1,47 @@
 package desefiosCeuma.DesafioCarro;
 
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class Garagem
-{
-//sistema de armazenagem e procura do carro
-    List<Carro> garagem = new ArrayList();//lista dos carros na garagem
-    void adicionarCarro(Carro c){
+public class Garagem {
+    // sistema de armazenagem e procura do carro
+    Map<Integer, Carro> garagem = new HashMap();// lista dos carros na garagem
 
-        if(garagem.size() <= 20)
-        {
-            garagem.add(c);
-        }
-        else
-        {
+    void adicionarCarro(Carro c) {
+
+        if (garagem.size() <= 1) {
+            if (!garagem.containsKey(c.getEstacionado())) {
+                garagem.put(c.getEstacionado(), c);
+            } else {
+                System.out.println("já está ocupado");
+            }
+        } else {
             System.out.println("Não há vagas");
         }
-    }//este metodo adiciona carro na garagem
+    }// este metodo adiciona carro na garagem
 
-    void removeCarro(String model){
-        int i = 0;
-        for (Carro c : garagem)
-        {
-            if (model.equals(c.getModelo())) {
-                garagem.remove(garagem.get(i));
+    void removeCarro(int model) {
+        if (garagem.containsKey(model)){
+                garagem.remove(model);
             }
+    }// este metodo remove carro
+
+    void mostrarLista() {
+        garagem.values().forEach(p -> {
+            System.out.printf("Carro: %s -> Dono: %s -> Estacionado %s \n", p.getModelo(), p.getNomeMotorista(),
+                    p.getEstacionado());
+        });
+
+        }//mostra os carros
+
+        void procurarCarro(String nome,String model){
+            garagem.values().forEach(g -> {
+                if(g.getModelo().equals(model) && g.getNomeMotorista().equals(nome)){
+                    System.out.println("Carro encontrado!, ele está na vaga " + g.getEstacionado());
+                }
+            });
         }
-        i++;
-    }//este metodo remove carro
-
-    void mostrarLista(){
-        for (Carro c: garagem)
-        {
-            System.out.println(c.getNomeMotorista() +"=>"+ c.getModelo()+"\n");
-        }
-
-    }//mostra os carros
-
-    void procurarCarro(String nome,String model){
-        for (Carro c : garagem)
-        {
-            if (nome.equals(c.getNomeMotorista()) && model.equals(c.getModelo()))
-            {
-                System.out.println("carro encontrado!! ele está estacionado na vaga " + c.getEstacionado()+"\n");
-                break;
-            }
-        }
-
-    }//procura o carro atraves do modelo e nome
-}
+    }
+// procura o carro atraves do modelo e nome
