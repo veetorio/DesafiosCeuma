@@ -18,7 +18,7 @@ public class Carro {
     String getModelo() {
         return this.Modelo;
     }// get que retorna o modelo do carro
-    int getEstacionado(){return estacionado;}//get que retorna o local estacionado
+    int getEstacionado(){return this.estacionado;}//get que retorna o local estacionado
 
 
 }
