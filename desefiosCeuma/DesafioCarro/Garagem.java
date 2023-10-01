@@ -7,19 +7,17 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Garagem {
     // sistema de armazenagem e procura do carro
-    Map<Integer, Carro> garagem = new HashMap();
+    Map<Integer,Carro> garagem = new ArrayList<>();
     Carro c;// lista dos carros na garagem
 
     void adicionarCarro(Carro c) {
 
-        if (garagem.size() <= 1) {
-            if (!garagem.containsKey(c.getEstacionado())) {
-                garagem.put(c.getEstacionado(), c);
-            } else {
-                System.out.println("já está ocupado");
-            }
-        } else {
-            System.out.println("Não há vagas");
+        if (garagem.size() <= 1 && !garagem.containsKey(c.getEstacionado())){
+            garagem.put(c.getEstacionado(),c);}
+        else{
+            if(garagem.containsKey(c.getEstacionado())){
+                System.out.println("Este assento está ocupado");
+            }else{System.out.println("Não há vagas");}
         }
     }// este metodo adiciona carro na garagem
 
@@ -29,21 +27,17 @@ public class Garagem {
             }
     }// este metodo remove carro
 
-      String mostrarLista(){
-          for (Carro a :garagem.values()){
-              String lis = "Modelo -> "+a.getModelo() +" Dono -> "+a.getNomeMotorista()+" Vaga -> "+ a.getEstacionado();
-              return lis;}
-          return "";
-      }//mostra os carros
+      void mostrarLista(){
+        List<String> model = new ArrayList<>();
+      }
 
-        String procurarCarro(String nome,String model){
-//                Boolean valida = garagem.values();
-//                if(valida){
-//                     return ("Carro encontrado!, ele está na vaga " + c.getEstacionado());
-//                }else{
-//                     return "não encontrado";
+        String procurarCarro(String nome){
+                Boolean valida = garagem.contains(c.getEstacionado());
+                if(valida){
+                     return ("Carro encontrado!, ele está na vaga " + c.getEstacionado());
+                }else{
+                     return "não encontrado";
 //                }
-            return "";
         }
-    }
+    }}
 // procura o carro atraves do modelo e nome
