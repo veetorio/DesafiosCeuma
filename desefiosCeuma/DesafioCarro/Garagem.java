@@ -3,18 +3,16 @@ package desefiosCeuma.DesafioCarro;
 import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Garagem {
     // sistema de armazenagem e procura do carro
-    Map<Integer,Carro> garagem = new HashMap<>();
+     Map<Integer,Carro> garagem = new HashMap<>();
     Carro c;// lista dos carros na garagem
 
     void adicionarCarro(Carro c) {
-
-        if (garagem.size() <= 1 && !garagem.containsKey(c.getEstacionado())){
-            garagem.put(c.getEstacionado(),c);}else{if(garagem.containsKey(c.getEstacionado())){
-                System.out.println("Este assento está ocupado");
-            }else{System.out.println("Não há vagas");}}
+        garagem.put(c.getEstacionado(),c);
     }// este metodo adiciona carro na garagem
 
     void removeCarro(int ass) {
@@ -38,5 +36,19 @@ public class Garagem {
             });
         }
 
-    }
+    boolean verificacaoVagas(String nome,String modelo,int vaga) {
+
+
+        boolean retorno = true;
+        boolean vagas = garagem.size() <= 1 && garagem.containsKey(vaga);
+        boolean vazio = !(nome.equals(null)) && !(modelo.equals(null));
+        if (vagas) {
+            if (vazio){
+                retorno = true;
+            }
+        }
+        else{
+            retorno = false;}
+        return retorno;
+    }}
 // procura o carro atraves do modelo e nome
