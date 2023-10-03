@@ -20,5 +20,4 @@ public class Carro {
     }// get que retorna o modelo do carro
     int getEstacionado(){return this.estacionado;}//get que retorna o local estacionado
 
-
 }

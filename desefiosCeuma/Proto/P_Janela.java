@@ -1,7 +1,5 @@
 package desefiosCeuma.Proto;
 
-import desefiosCeuma.DesafioCarro.Janela;
-
 import javax.swing.*;
 import java.awt.*;
 
