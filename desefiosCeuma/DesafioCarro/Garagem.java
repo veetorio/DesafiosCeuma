@@ -3,6 +3,8 @@ package desefiosCeuma.DesafioCarro;
 import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Garagem {
     // sistema de armazenagem e procura do carro
@@ -11,10 +13,8 @@ public class Garagem {
 
     void adicionarCarro(Carro c) {
 
-        if (garagem.size() <= 1 && !garagem.containsKey(c.getEstacionado())){
-            garagem.put(c.getEstacionado(),c);}else{if(garagem.containsKey(c.getEstacionado())){
-                System.out.println("Este assento está ocupado");
-            }else{System.out.println("Não há vagas");}}
+            garagem.put(c.getEstacionado(),c);
+
     }// este metodo adiciona carro na garagem
 
     void removeCarro(int ass) {
@@ -27,16 +27,33 @@ public class Garagem {
     }// este metodo remove carro
 
       void mostrarLista(){
-        List<String> model = new ArrayList<>();
+
       }
 
-        void procurarCarro(String modelo){
-            garagem.values().forEach( a -> {
-                if(a.getModelo().equals(modelo.strip())) {
+        void procurarCarro(String modelo) {
+            garagem.values().forEach(a -> {
+                if (a.getModelo().equals(modelo.strip())) {
                     JOptionPane.showMessageDialog(null, a.getNomeMotorista() + "Seu carro foi encontrado na vaga" + a.getEstacionado(), "Procura", JOptionPane.PLAIN_MESSAGE);
                 }
             });
         }
 
+         boolean Validação(String nome,String modelo,Integer assento){
+            final String regex = "[0-9]";
+            boolean retorno;
+            Pattern range = Pattern.compile(regex);
+            Matcher start = range.matcher(nome);
+
+            boolean vagas = garagem.size() <= 1 && !garagem.containsKey(assento);
+            boolean vazio = !nome.isBlank() && !modelo.isBlank();
+            boolean NotContainsNumeric = !start.find();
+
+            if(vagas && vazio && NotContainsNumeric){
+                retorno = true;
+            }else{
+                retorno = false;
+            }
+            return retorno;
+        }
     }
 // procura o carro atraves do modelo e nome

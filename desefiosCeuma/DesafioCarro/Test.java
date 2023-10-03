@@ -10,7 +10,6 @@ public class Test{ // desafio criar uma garagem e um sistema de armazenagem,remo
     static Scanner leia = new Scanner(System.in);
 
     public static void main(String[] args){
-        Janela.init();
 
 
 
