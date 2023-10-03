@@ -12,7 +12,13 @@ public class Garagem {
     Carro c;// lista dos carros na garagem
 
     void adicionarCarro(Carro c) {
+<<<<<<< HEAD
         garagem.put(c.getEstacionado(),c);
+=======
+
+            garagem.put(c.getEstacionado(),c);
+
+>>>>>>> a0ede9c6765dfdde58692a0533c701ab27b8609d
     }// este metodo adiciona carro na garagem
 
     void removeCarro(int ass) {
@@ -25,17 +31,18 @@ public class Garagem {
     }// este metodo remove carro
 
       void mostrarLista(){
-        List<String> model = new ArrayList<>();
+
       }
 
-        void procurarCarro(String modelo){
-            garagem.values().forEach( a -> {
-                if(a.getModelo().equals(modelo.strip())) {
+        void procurarCarro(String modelo) {
+            garagem.values().forEach(a -> {
+                if (a.getModelo().equals(modelo.strip())) {
                     JOptionPane.showMessageDialog(null, a.getNomeMotorista() + "Seu carro foi encontrado na vaga" + a.getEstacionado(), "Procura", JOptionPane.PLAIN_MESSAGE);
                 }
             });
         }
 
+<<<<<<< HEAD
     boolean verificacaoVagas(String nome,String modelo,int vaga) {
 
 
@@ -51,4 +58,24 @@ public class Garagem {
             retorno = false;}
         return retorno;
     }}
+=======
+         boolean Validação(String nome,String modelo,Integer assento){
+            final String regex = "[0-9]";
+            boolean retorno;
+            Pattern range = Pattern.compile(regex);
+            Matcher start = range.matcher(nome);
+
+            boolean vagas = garagem.size() <= 1 && !garagem.containsKey(assento);
+            boolean vazio = !nome.isBlank() && !modelo.isBlank();
+            boolean NotContainsNumeric = !start.find();
+
+            if(vagas && vazio && NotContainsNumeric){
+                retorno = true;
+            }else{
+                retorno = false;
+            }
+            return retorno;
+        }
+    }
+>>>>>>> a0ede9c6765dfdde58692a0533c701ab27b8609d
 // procura o carro atraves do modelo e nome
