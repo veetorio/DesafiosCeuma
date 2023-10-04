@@ -8,45 +8,42 @@ import java.util.regex.Pattern;
 public class Garagem {
     // sistema de armazenagem e procura do carro
      Map<Integer,Carro> garagem = new HashMap<>();
+     protected Integer Vagastot = 20;
     Carro c;// lista dos carros na garagem
 
-    void adicionarCarro(Carro c) {
-        garagem.put(c.getEstacionado(),c);
-
+    protected void adicionarCarro(Carro c) {
             garagem.put(c.getEstacionado(),c);
+            this.Vagastot --;
 
     }// este metodo adiciona carro na garagem
 
-    void removeCarro(int ass) {
-        garagem.values().forEach(p ->{
-            if(p.getEstacionado() == (ass)){
-                garagem.remove(p.getEstacionado());
-                JOptionPane.showMessageDialog(null,"carro removido","remoção",JOptionPane.PLAIN_MESSAGE);
-            }
-        });
+    protected void removeCarro(int ass) {
+                garagem.remove(garagem.remove(ass));
+                JOptionPane.showMessageDialog(null,"carro removido","remoção",JOptionPane.INFORMATION_MESSAGE);
+
+       ;
     }// este metodo remove carro
 
-      void mostrarLista(){
-
+    protected void mostrarLista(){
+        System.out.println("------->=Garagem <=------");
+        System.out.println("Nome   |Modelo    | Vaga");
+        garagem.values().forEach(p -> System.out.println(p.getNomeMotorista() + "    |"+ p.getModelo()+"    |"+ p.getEstacionado()));
       }
 
-        void procurarCarro(String modelo) {
+        protected void procurarCarro(String modelo,String nome) {
             garagem.values().forEach(a -> {
-                if (a.getModelo().equals(modelo.strip())) {
+                if (a.getModelo().equals(modelo.strip()) && a.getNomeMotorista().equals(nome.strip())) {
                     JOptionPane.showMessageDialog(null, a.getNomeMotorista() + "Seu carro foi encontrado na vaga" + a.getEstacionado(), "Procura", JOptionPane.PLAIN_MESSAGE);
                 }
             });
         }
-         boolean Validação(String nome,String modelo,Integer assento){
+        protected boolean Validação(String nome,String modelo,Integer assento){
              boolean retorno;
              String nom = nome;
-             final String  regex =  "[A-z]";
-             Pattern start = Pattern.compile(regex);
-             Matcher out = start.matcher(nom);
 
-            boolean vagas = garagem.size() <= 1 && !garagem.containsKey(assento);
+            boolean vagas = garagem.size() <= Vagastot && !garagem.containsKey(assento);
             boolean vazio = !nome.isBlank() && !modelo.isBlank();
-            boolean isAlpha = out.find();
+            boolean isAlpha = nom.matches("^[a-zA-Z ]+$");
 
             if(vagas && vazio && isAlpha){
                 retorno = true;
