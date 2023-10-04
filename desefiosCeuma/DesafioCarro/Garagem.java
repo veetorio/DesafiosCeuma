@@ -41,7 +41,7 @@ public class Garagem {
              boolean retorno;
              String nom = nome;
 
-            boolean vagas = garagem.size() <= Vagastot && !garagem.containsKey(assento);
+            boolean vagas = garagem.size() <= Vagastot && !garagem.containsKey(assento) && assento >= 1;
             boolean vazio = !nome.isBlank() && !modelo.isBlank();
             boolean isAlpha = nom.matches("^[a-zA-Z ]+$");
 

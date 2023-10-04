@@ -12,15 +12,13 @@ public class Test{ // desafio criar uma garagem e um sistema de armazenagem,remo
     // acrescentado que a garagem possuí um limite
 
     static List perfis = Arrays.asList("adm","usuario");
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         String Saida = "iniciar";
         int cont = 0;
         int sair = JOptionPane.showConfirmDialog(null, String.format("Deseja %s ", Saida), "Programa", JOptionPane.INFORMATION_MESSAGE);
-
         while (sair == 0) {
             String perfil = JOptionPane.showInputDialog("qual seu perfil");
-
             if(perfis.contains(perfil)){
                 switch (perfil){
                     case "adm":
@@ -30,16 +28,15 @@ public class Test{ // desafio criar uma garagem e um sistema de armazenagem,remo
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"Insira Adm ou Usuario","",JOptionPane.ERROR_MESSAGE);
-
             }
-
             {
                 Saida = cont != 0 ? Saida : "continuar";
                 sair = JOptionPane.showConfirmDialog(null, String.format("Deseja %s ", Saida), "Programa", JOptionPane.INFORMATION_MESSAGE);
                 cont++;}
         }
-    }
+        // falta criar o map do admin e falta desenvolver o garagem
 
+    }
     static void Adm(){
         String senha = JOptionPane.showInputDialog("Qual sua senha ?");
         Admin a = new Admin(senha);
