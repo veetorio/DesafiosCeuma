@@ -11,7 +11,7 @@ public class Garagem {
     protected static Integer Vagastot = 20;
     Carro c;// lista dos carros na garagem
 
-    protected void adicionarCarro(Carro c) {
+    public void adicionarCarro(Carro c) {
         garagem.put(c.getEstacionado(), c);
     }// este metodo adiciona carro na garagem
 
@@ -51,5 +51,4 @@ public class Garagem {
         }
         return retorno;
     }
-}
-// procura o carro atraves do modelo e nome
+}// procura o carro atraves do modelo e nome

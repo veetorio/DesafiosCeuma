@@ -1,19 +1,16 @@
 package desefiosCeuma.DesafioCarro;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class Admin extends Garagem {
     private final String key = "ABC123";
-    private List<String> operator = List.of("adicionar carro", "remover carro", "procurar carro", "mostrar carro");
+    private final List<String> operator = List.of("adicionar carro", "remover carro", "procurar carro", "mostrar carro");
 
-    private Map<Integer, Carro> garagem = super.garagem;
+    private final Map<Integer, Carro> garagem = Garagem.garagem;
 
-    private int vagastot = super.Vagastot;
+    private int vagastot = Vagastot;
     private Boolean entrada = false;
 
     Admin(String senha) {
@@ -27,34 +24,38 @@ public class Admin extends Garagem {
 
     void Init() {
         int continuar = 0;
-        while (continuar == 0)
-        if (entrada) {
-            String opt_s = JOptionPane.showInputDialog("Qual sua operação : ");
-            if (operator.contains(opt_s.toLowerCase())) {
-                switch (opt_s.toLowerCase()) {
-                    case "remover carro":
-                        Remover();
-                        break;
-                    case "adicionar carro":
-                        adicionar();
-                        JOptionPane.showMessageDialog(null, "Carro Adicionado, restaram apenas " + this.vagastot + "vagas", "sucesso", JOptionPane.INFORMATION_MESSAGE);
-                        break;
-                    case "procurar carro":
-                        Procurar();
-                        break;
-                    case "mostrar carro":
-                        Mostrar();
-                        break;
-                }
-            } else {
-                if (!operator.contains(opt_s.toLowerCase())) {
-                    JOptionPane.showMessageDialog(null, "valor inserido não está nas operações", "", JOptionPane.ERROR_MESSAGE);
-                }
-
+        try {
+            while (continuar == 0) {
+                if (entrada) {
+                    String opt_s = JOptionPane.showInputDialog("Qual sua operação : ");
+                    opt_s = opt_s.strip().trim();
+                    if (operator.contains(opt_s.toLowerCase())) {
+                        switch (opt_s.toLowerCase()) {
+                            case "remover carro":
+                                Remover();
+                                break;
+                            case "adicionar carro":
+                                adicionar();
+                                JOptionPane.showMessageDialog(null, "Carro Adicionado, restaram apenas " + this.vagastot + "vagas", "sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                            case "procurar carro":
+                                Procurar();
+                                break;
+                            case "mostrar carro":
+                                Mostrar();
+                                break;
+                        }
+                    } else {
+                        if (!operator.contains(opt_s.toLowerCase())) {
+                            JOptionPane.showMessageDialog(null, "valor inserido não está nas operações", "", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                } else
+                    JOptionPane.showMessageDialog(null, "Aplicação não pode ser acessada, verifique se sua senha está correta", "entrada warning", JOptionPane.WARNING_MESSAGE);
+                continuar = JOptionPane.showConfirmDialog(null, "deseja continuar");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Aplicação não pode ser acessada, verifique se sua senha está correta", "entrada warning", JOptionPane.WARNING_MESSAGE);
-        }continuar = JOptionPane.showConfirmDialog(null,"deseja continuar");
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Aplicação foi encerrada indevidamente", "", JOptionPane.ERROR_MESSAGE);}
     }
 
     private void adicionar() {
@@ -67,7 +68,7 @@ public class Admin extends Garagem {
                 if (Validação(nome, modelo, vaga)) {
                     Carro c = new Carro(vaga, nome, modelo);
                     adicionarCarro(c);
-                    this.Vagastot--;
+                    this.vagastot--;
                     Concluido = "concluido";
                 } else {
                     JOptionPane.showMessageDialog(null, "erro de inserção. Verifique: \n" + "se o valor inserido não é vazio; \n" + "se o valor inserido não possui meta-caracter(Ex @#$%) \n" + "se o valor inserido em assento é negativo ");
@@ -83,14 +84,10 @@ public class Admin extends Garagem {
         mostrarLista(garagem);
     }
 
-    private void Procurar() {
-        String model = JOptionPane.showInputDialog("Qual o modelo deseja procurar :");
-        String nome = JOptionPane.showInputDialog("Qual seu nome :");
+    private void Procurar() {String model = JOptionPane.showInputDialog("Qual o modelo deseja procurar :");String nome = JOptionPane.showInputDialog("Qual seu nome :");
         procurarCarro(model, nome);
     }
 
-    private void Remover() {
-        int Assento = Integer.parseInt(JOptionPane.showInputDialog("Qual a vaga que deseja retirar :"));
-        removeCarro(Assento, this.garagem);
+    private void Remover() {int Assento = Integer.parseInt(JOptionPane.showInputDialog("Qual a vaga que deseja retirar :"));removeCarro(Assento, this.garagem);
     }
 }

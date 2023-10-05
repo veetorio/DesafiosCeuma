@@ -5,7 +5,7 @@ public class Carro {
     private String Modelo;//Modelo do carro
     private int estacionado;//local estacionado
 
-    Carro(int estacionado,String nome, String Modelo) {
+    public Carro(int estacionado,String nome, String Modelo) {
         this.nomeMotorista = nome;
         this.Modelo = Modelo;
         this.estacionado = estacionado;
@@ -19,5 +19,4 @@ public class Carro {
         return this.Modelo;
     }// get que retorna o modelo do carro
     int getEstacionado(){return this.estacionado;}//get que retorna o local estacionado
-
 }
