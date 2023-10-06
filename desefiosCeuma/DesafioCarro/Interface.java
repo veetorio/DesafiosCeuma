@@ -14,12 +14,13 @@ public class Interface { // desafio criar uma garagem e um sistema de armazenage
         String Saida = "iniciar";
         int cont = 0;
         int sair = JOptionPane.showConfirmDialog(null, String.format("Deseja %s ", Saida), "Programa", JOptionPane.INFORMATION_MESSAGE);
-
         while (sair == 0) {
-            String perfil = JOptionPane.showInputDialog("qual seu perfil");
-
-            if (perfis.contains(perfil)) {
-                switch (perfil.toLowerCase()) {
+            String perfil = JOptionPane.showInputDialog("qual seu perfil").toLowerCase();
+            while(!perfis.contains(perfil)){
+                JOptionPane.showMessageDialog(null, "Insira Adm ou Usuario", "", JOptionPane.ERROR_MESSAGE);
+                perfil = JOptionPane.showInputDialog("qual seu perfil").toLowerCase();
+            }
+            switch (perfil.toLowerCase()) {
                     case "adm":
                         Adm();
                         break;
@@ -27,10 +28,6 @@ public class Interface { // desafio criar uma garagem e um sistema de armazenage
                         User();
                         break;
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Insira Adm ou Usuario", "", JOptionPane.ERROR_MESSAGE);
-
-            }
             {
                 Saida = cont != 0 ? Saida : "continuar";
                 sair = JOptionPane.showConfirmDialog(null, String.format("Deseja %s ", Saida), "Programa", JOptionPane.INFORMATION_MESSAGE);
@@ -38,6 +35,7 @@ public class Interface { // desafio criar uma garagem e um sistema de armazenage
             }
         }
     }
+
     static void Adm() {
         try {
             String senha = JOptionPane.showInputDialog("Qual sua senha ?");
@@ -47,6 +45,7 @@ public class Interface { // desafio criar uma garagem e um sistema de armazenage
             JOptionPane.showMessageDialog(null, "aplicação foi encerrada: senha incorrreta");
         }
     }
+
     static void User() {
         String nome = JOptionPane.showInputDialog("diga seu nome ");
         Usuario u = new Usuario(nome);

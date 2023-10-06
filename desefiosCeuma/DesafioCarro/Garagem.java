@@ -2,8 +2,7 @@ package desefiosCeuma.DesafioCarro;
 
 import javax.swing.*;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Garagem {
     // sistema de armazenagem e procura do carro
@@ -32,6 +31,7 @@ public class Garagem {
         garagem.values().forEach(a -> {
             if (a.getModelo().equals(modelo.strip()) && a.getNomeMotorista().equals(nome.strip())) {
                 JOptionPane.showMessageDialog(null, a.getNomeMotorista() + " Seu carro foi encontrado na vaga " + a.getEstacionado(), "Procura", JOptionPane.PLAIN_MESSAGE);
+
             }
         });
     }
