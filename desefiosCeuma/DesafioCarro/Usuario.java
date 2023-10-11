@@ -8,26 +8,29 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Usuario extends Garagem {
     Map<Integer, Carro> garagem = super.garagem;
     public Usuario(String nome) {
-        AtomicInteger resultadodaconsulta = new AtomicInteger(1);
         Garagem.garagem.values().forEach(p -> {
+            JFrame status = new JFrame("vai luan");
+            Font f = new Font("rapaz",Font.BOLD,20);
+            JTextArea a = new JTextArea();
+
+            status.setSize(720,800);
+            status.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+            String txt = "";
             if (nome.equals(p.getNomeMotorista())){
-                JFrame status = new JFrame("vai luan");
-                String txt = String.format("----------------Perfil-------------------\nNome | %s\nModelo |%s\nVaga | %s",p.getNomeMotorista(),p.getModelo(),p.getEstacionado());
-                JTextArea a = new JTextArea(txt);
-                Font f = new Font("rapaz",Font.BOLD,20);
+                txt = String.format("----------------Perfil-------------------\nNome | %s\nModelo |%s\nVaga | %s",p.getNomeMotorista(),p.getModelo(),p.getEstacionado());
 
-                status.setSize(720,800);
+                a.setText(txt);
                 status.setContentPane(a);
-                status.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
-                a.setLineWrap(true);
-                a.setLocation(390,390);
                 a.setFont(f);
-                status.setVisible(true);}
-                resultadodaconsulta.set(0);
+                a.setLineWrap(true);
+
+                a.setLocation(390,390);
+                status.setVisible(true);}else{
+                txt  = "nenhum veículo foi encontrado";
+                a.setText(txt);
+            }
         });
-        if(resultadodaconsulta.get() == 0){
-            JOptionPane.showMessageDialog(null,"carro não encontrado");
-        }
+
     }
 }

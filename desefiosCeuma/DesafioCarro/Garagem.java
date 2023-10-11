@@ -42,7 +42,7 @@ public class Garagem {
 
         boolean vagas = garagem.size() <= Vagastot && !garagem.containsKey(assento) && assento >= 0;
         boolean vazio = !nome.isBlank() && !modelo.isBlank();
-        boolean isAlpha = nom.matches("^[a-zA-Z ]+$");
+        boolean isAlpha = nom.matches("^[a-zA-ZÁ-Ä ]+$");
 
         if (vagas && vazio && isAlpha) {
             retorno = true;

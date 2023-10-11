@@ -7,7 +7,7 @@ import java.util.List;
 public class Interface { // desafio criar uma garagem e um sistema de armazenagem,remoção e procura
     // acrescentado que a garagem possuí um limite
 
-    static List perfis = Arrays.asList("adm", "usuario");
+    static List perfis = Arrays.asList("adm", "usuario","administrador","user");
 
     public static void main(String[] args) {
 
@@ -23,6 +23,12 @@ public class Interface { // desafio criar uma garagem e um sistema de armazenage
             switch (perfil.toLowerCase()) {
                     case "adm":
                         Adm();
+                        break;
+                    case "administrador":
+                        Adm();
+                        break;
+                    case "user":
+                        User();
                         break;
                     case "usuario":
                         User();
